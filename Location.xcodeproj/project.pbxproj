@@ -15,6 +15,7 @@
 		598ED2402388D914008173BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598ED23E2388D914008173BC /* LaunchScreen.storyboard */; };
 		598ED24B2388D915008173BC /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598ED24A2388D915008173BC /* LocationTests.swift */; };
 		598ED2562388D915008173BC /* LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598ED2552388D915008173BC /* LocationUITests.swift */; };
+		598ED2652388E203008173BC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 598ED2642388E203008173BC /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		598ED2512388D915008173BC /* LocationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		598ED2552388D915008173BC /* LocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUITests.swift; sourceTree = "<group>"; };
 		598ED2572388D915008173BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		598ED2642388E203008173BC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				598ED2652388E203008173BC /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +86,7 @@
 				598ED2492388D915008173BC /* LocationTests */,
 				598ED2542388D915008173BC /* LocationUITests */,
 				598ED2312388D906008173BC /* Products */,
+				598ED2632388E203008173BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +130,14 @@
 				598ED2572388D915008173BC /* Info.plist */,
 			);
 			path = LocationUITests;
+			sourceTree = "<group>";
+		};
+		598ED2632388E203008173BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				598ED2642388E203008173BC /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
