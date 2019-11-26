@@ -15,16 +15,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let text = [ "緯度", "経度", "国名", "郵便番号", "都道府県", "郡", "市区町村", "丁番なしの地名", "地名", "番地" ]
     var item: [ UILabel ] = []
     var location: [ UILabel ] = []
+    var address: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //サイズ
         let width = self.view.frame.width / 2
-        let height = self.view.frame.height / CGFloat( self.text.count + 1 )
+        let height = self.view.frame.height / CGFloat( self.text.count + 2 )
         
         //ラベル
-        for ( i, text ) in text.enumerated() {
+        for ( i, text ) in self.text.enumerated() {
             //項目
             self.item.append( UILabel() )
             self.item.last!.frame.size = CGSize( width: width, height: height )
@@ -41,6 +42,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.view.addSubview( self.location.last! )
         }
         
+        //住所
+        self.address = UILabel()
+        self.address.frame.size = CGSize( width: self.view.frame.width, height: height )
+        self.address.frame.origin = CGPoint( x: 0, y: height * CGFloat( self.text.count + 1 ) )
+        self.address.textAlignment = .center
+        self.view.addSubview( self.address )
+        
         //ロケーションマネージャ
         self.locationManager.requestWhenInUseAuthorization()
         let status = CLLocationManager.authorizationStatus()
@@ -54,9 +62,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager( _ manager: CLLocationManager, didUpdateLocations locations: [ CLLocation ] ) {
         //表示更新
         if let location = locations.first {
+            
             //緯度・経度
             self.location[0].text = location.coordinate.latitude.description
             self.location[1].text = location.coordinate.longitude.description
+            
             
             //逆ジオコーディング
             self.geocoder.reverseGeocodeLocation( location, completionHandler: { ( placemarks, error ) in
@@ -70,6 +80,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     self.location[7].text = placemark.subLocality
                     self.location[8].text = placemark.thoroughfare
                     self.location[9].text = placemark.subThoroughfare
+                    
+                    //住所
+                    let administrativeArea = placemark.administrativeArea == nil ? "" : placemark.administrativeArea!
+                    let locality = placemark.locality == nil ? "" : placemark.locality!
+                    let subLocality = placemark.subLocality == nil ? "" : placemark.subLocality!
+                    let thoroughfare = placemark.thoroughfare == nil ? "" : placemark.thoroughfare!
+                    let subThoroughfare = placemark.subThoroughfare == nil ? "" : placemark.subThoroughfare!
+                    let placeName = !thoroughfare.contains( subLocality ) ? subLocality : thoroughfare
+                    self.address.text = administrativeArea + locality + placeName + subThoroughfare
                 }
             } )
         }
